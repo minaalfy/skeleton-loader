@@ -13,6 +13,6 @@
     - Now supports "Circle, rectangle and square" shapes.
 
 # Dependencies
-    - [moveable](https://github.com/yuanqing/load-google-maps-api)
-    - [tailwindcss](https://github.com/tailwindlabs/tailwindcss)
-    - [alpinejs](https://github.com/alpinejs/alpine)
+[moveable](https://github.com/yuanqing/load-google-maps-api)
+[tailwindcss](https://github.com/tailwindlabs/tailwindcss)
+[alpinejs](https://github.com/alpinejs/alpine)
