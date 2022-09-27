@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.wave {
+  animation: wave 3s linear;
+  animation-iteration-count: infinite;
+}
+
+#wave3 {
+  animation-duration: 7s;
+}
+
+#wave2 {
+  animation-duration: 5s;
+  animation-direction: reverse;
+}
+
+@keyframes wave {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+header:after {
+  width: 100vw;
+  height: 8rem;
+  border-radius: 100%;
+  content: ' ';
+  position: absolute;
+  background: hsl(var(--p) / 1);
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  top: calc(100% - 4rem);
+}
+.grid-display {
+  background-image: radial-gradient(hsl(var(--bc) / 0.3) 1px, transparent 0);
+  background-size: 20px 20px;
+  background-position: -20px -20px;
+}
+.skeleton-shape {
+  background-color: aliceblue;
+}
+.skeleton-loader {
+  --skeleton-background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
+  --skeleton-background-size: 100% 100%;
+  --skeleton-background-position: -150% 0;
+  --skeleton-animation-background-position: 350% 0;
+}
+.skeleton-loader:after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-repeat: no-repeat;
+  background-image: var(--skeleton-background-image);
+  background-size: var(--skeleton-background-size);
+  background-position: var(--skeleton-background-position);
+  animation: skeleton-animation 2s infinite;
+}
+.animate-none:after {animation: none;}
+@keyframes skeleton-animation {
+  to {
+    background-position: var(--skeleton-animation-background-position);
+  }
+}
+.tab-active {
+  --tab-bg: hsl(0 0% 8%);
+  --tab-border-color: hsl(0 0% 8%);
+}
+.btn-delete {
+  position: absolute;
+  right: -2rem;
+  top: 0px;
+  width: 24px;
+  height: 24px;
+  background: #4af;
+  opacity: 0.8;
+  border-radius: 4px;
+}
+.btn-delete:hoer, .btn-delete:active {
+  opacity: 1;
+}
+.btn-delete:before, .btn-delete:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 16px;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+  cursor: pointer;
+}
+.btn-delete:after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}

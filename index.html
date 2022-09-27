@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skeleton loader generator</title>
+  <meta name="description" content="Generate skeleton loader that suits your content" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon/logo.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+  <link rel="shortcut icon" href="/favicon/favicon.ico" />
+  <meta name="msapplication-TileColor" content="#da532c" />
+  <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
+  <meta name="theme-color" content="#ffffff" />
+</head>
+
+<body class="font-sans text-primary-content" x-data="generator">
+  <header
+    class="relative bg-gradient-to-r from-orange-400 to-purple-600 px-4 lg:px-6 flex flex-row pt-20 justify-center">
+    <div class="w-full max-w-screen-xl mb-4" x-ignore>
+      <h1 class="text-4xl font-medium font-black text-center">
+        Easy Skeleton Loaders
+      </h1>
+      <div class="flex flex-row justify-center">
+        <h2 class="text-center font-medium text-xl text-primary-content">
+          Single div easily generated skeleton loader for your content.
+        </h2>
+      </div>
+      <div class="flex flex-row justify-center my-12">
+        <div class="flex flex-col sm:flex-row w-full sm:w-auto">
+          <a href="https://github.com/tailwindlabs/heroicons" target="_blank" rel="noopener noreferrer" class="block">
+            <div class="p-5 bg-purple-50 bg-opacity-20 rounded-md">
+              <p class="font-medium text-lg leading-none text-primary-content">
+                <span class="align-top inline-flex flex-row items-center"><svg fill="currentColor" viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
+                    <path
+                      d="M7.975 16a9.39 9.39 0 003.169-.509c-.473.076-.652-.229-.652-.486l.004-.572c.003-.521.01-1.3.01-2.197 0-.944-.316-1.549-.68-1.863 2.24-.252 4.594-1.108 4.594-4.973 0-1.108-.39-2.002-1.032-2.707.1-.251.453-1.284-.1-2.668 0 0-.844-.277-2.77 1.032A9.345 9.345 0 008 .717c-.856 0-1.712.113-2.518.34C3.556-.24 2.712.025 2.712.025c-.553 1.384-.2 2.417-.1 2.668-.642.705-1.033 1.612-1.033 2.707 0 3.852 2.342 4.72 4.583 4.973-.29.252-.554.692-.642 1.347-.58.264-2.027.692-2.933-.831-.19-.302-.756-1.045-1.549-1.032-.843.012-.34.478.013.667.428.239.919 1.133 1.032 1.422.201.567.856 1.65 3.386 1.184 0 .55.006 1.079.01 1.447l.003.428c0 .265-.189.567-.692.479 1.007.34 1.926.516 3.185.516z">
+                    </path>
+                  </svg><span style="width: 0.67ch"></span>Open in GitHub</span>
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <button type="button" aria-label="Toggle theme color" x-cloak class="z-10 btn btn-primary fixed right-2 top-2"
+      @click="toggleTheme">
+      <svg class="w-5 h-5" aria-hidden="true" width="20" :class="theme !== 'dark' || 'hidden'" fill="currentColor"
+        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+      </svg>
+      <svg class="w-5 h-5" aria-hidden="true" :class="theme === 'dark' || 'hidden'" fill="currentColor"
+        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+          fill-rule="evenodd" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </header>
+  <main class="container px-4 max-w-6xl mx-auto">
+    <div class="flex flex-col w-full lg:flex-row mb-8">
+      <div class="card bg-base-300 flex-1">
+        <div class="h-80 p-4 overflow-x-hidden">
+          <div :class="gridDisplay && 'grid-display'" id="canvas" x-ref="canvas" x-on:shape-update.window="updateShape"
+            @click.self="unSelect" class="relative bg-base-100 mx-auto h-full"
+            :style="{width: width + 'px', height: height + 'px'}">
+            <template x-for="(shape, index) in shapes">
+              <div class="absolute skeleton-shape" :id="'shape-'+index"
+                @click="tool === 'select' && select($el, index+1)" :class="shape.circle && 'rounded-full'"
+                :style="{height: shape.height+'px', width: shape.width+'px',background: fg, top: shape.top+'px', left: shape.left+'px'}">
+                <button x-show="selected === index+1" class="btn-delete" type="button"
+                  @click="deleteShape(index)"></button>
+              </div>
+            </template>
+          </div>
+        </div>
+        <div class="pb-4 bg-base-200 flex flex-col flex-1">
+          <div class="mt-4 btn-group mx-auto" role="group" aria-label="Canvas tools">
+            <button class="btn btn-outline btn-primary btn-sm group transition tooltip" aria-label="Select tool"
+              @click="toolSelect" :class="tool === 'select' && 'btn-active'" name="Select tool"
+              data-tip="Select shape to edit">
+              <svg class="w-6 h-6 group-hover:stroke-white transition" fill="none"
+                :class="tool === 'select'? 'stroke-white': 'stroke-primary'" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122">
+                </path>
+              </svg>
+            </button>
+            <button class="btn btn-outline btn-primary btn-sm group transition tooltip"
+              aria-label="Add square/rectangle" data-tip="Add square/rectangle" @click="toolSquare"
+              :class="tool === 'square' && 'btn-active'">
+              <svg class="w-6 h-6 group-hover:fill-white transition"
+                :class="tool === 'square'? 'fill-white':'fill-primary'" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 30 30">
+                <g fill-rule="evenodd">
+                  <path
+                    d="M23.8591 3.15733h1V0h-1zm-18.698 0h.99934V0H5.1611zM5.1611 30h.99934v-3.15733H5.1611zm18.698 0h1v-3.158h-1zM.00977 6.15h3.15667v-1H.00977zm0 18.69867h3.15667v-1H.00977z" />
+                  <g transform="translate(.00977)">
+                    <path
+                      d="M6.48407 6.4834v17.032h17.03266l-.00066-17.032h-17.032Zm-.83334 18.69867c-.46066 0-.83333-.37267-.83333-.83334V5.65007c0-.46.37333-.83334.83333-.83334H24.3494c.46 0 .83333.37334.83333.83334l.00067 18.69866a.83357.83357 0 0 1-.244.58934c-.15667.156-.36867.244-.58933.244H5.65073Z" />
+                    <path d="M26.84333 24.84867h3.156v-1h-3.156zm-.00066-18.698H30v-1h-3.15733z" />
+                  </g>
+                </g>
+              </svg>
+            </button>
+            <button class="btn btn-outline btn-primary btn-sm group transition tooltip" aria-label="Add circle"
+              data-tip="Add circle" @click="toolCircle" :class="tool === 'circle'&& 'btn-active'">
+              <svg class="w-6 h-6 group-hover:fill-white transition"
+                :class="tool === 'circle'? 'fill-white':'fill-primary'" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 31 30">
+                <g fill-rule="evenodd" stroke="none" stroke-width="1"
+                  transform="translate(-917 -227) translate(917.9 227)">
+                  <path d="M5 3.1 6 3.1 6 0 5 0z" />
+                  <path d="M0 6 3.1 6 3.1 5 0 5z" />
+                  <path d="M5 30 6 30 6 26.9 5 26.9z" />
+                  <path d="M0 24.9 3.1 24.9 3.1 24 0 24z" />
+                  <path d="M26.7 24.9 29.8 24.9 29.8 24 26.7 24z" />
+                  <path d="M23.6 30 24.5 30 24.5 26.9 23.6 26.9z" />
+                  <path d="M23.7 3.1 24.6 3.1 24.6 0 23.7 0z" />
+                  <path d="M26.7 6 29.8 6 29.8 5 26.7 5z" />
+                  <path
+                    d="M14.8 5.2a9.8 9.8 0 1 0 0 19.6 9.8 9.8 0 0 0 0-19.6m0 2a7.8 7.8 0 1 1 0 15.6 7.8 7.8 0 0 1 0-15.7" />
+                </g>
+              </svg>
+            </button>
+          </div>
+          <template x-if="selected">
+            <form class="px-4">
+              <fieldset class="mb-4">
+                <legend class="label-text">Shape size</legend>
+                <div class="flex flex-col lg:flex-row gap-4 mb-4">
+                  <div class="form-control">
+                    <label class="input-group input-group-sm">
+                      <input type="number" name="shapeWidth" max="1000" placeholder="124"
+                        class="input input-bordered input-sm text-base-content dark:text-white max-w-[50%]"
+                        x-model.number="shapes[selected - 1].width"
+                        @change="shapes[selected - 1].circle && updateRect" />
+                      <span class="label-text" x-text="shapes[selected - 1].circle ? 'Diameter': 'width (px)'"></span>
+                    </label>
+                  </div>
+                  <div class="form-control" x-show="!shapes[selected - 1].circle">
+                    <label class="input-group input-group-sm">
+                      <input type="number" name="shapeHeight" max="1000" placeholder="124"
+                        class="input input-bordered input-sm text-base-content max-w-[50%]"
+                        x-model.number="shapes[selected - 1].height" />
+                      <span class="label-text">height (px)</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="flex flex-col lg:flex-row gap-4">
+                  <div class="form-control">
+                    <label class="input-group input-group-sm">
+                      <input type="number" name="shapeLeft" max="1000" placeholder="16"
+                        class="input input-bordered input-sm text-base-content dark:text-white max-w-[50%]"
+                        x-model.number="shapes[selected - 1].left" />
+                      <span class="label-text">left (px)</span>
+                    </label>
+                  </div>
+                  <div class="form-control">
+                    <label class="input-group input-group-sm">
+                      <input type="number" name="shapeTop" max="1000" placeholder="16"
+                        class="input input-bordered input-sm text-base-content max-w-[50%]"
+                        x-model.number="shapes[selected - 1].top" />
+                      <span class="label-text">top (px)</span>
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </template>
+          <template x-if="!selected">
+            <form class="px-4">
+              <fieldset class="mb-4">
+                <legend class="label-text">Component size</legend>
+                <div class="flex flex-col lg:flex-row gap-4">
+                  <div class="form-control">
+                    <label class="input-group input-group-sm">
+                      <input type="number" name="width" max="1000" placeholder="124"
+                        class="input input-bordered input-sm text-base-content max-w-[50%]" x-model.number="width" />
+                      <span class="label-text">width (px)</span>
+                    </label>
+                  </div>
+                  <div class="form-control">
+                    <label class="input-group input-group-sm">
+                      <input type="number" name="height" max="1000" placeholder="124"
+                        class="input input-bordered input-sm text-base-content max-w-[50%]" x-model.number="height" />
+                      <span class="label-text">height (px)</span>
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset class="mb-4">
+                <legend class="label-text">Colors</legend>
+                <div class="flex flex-col lg:flex-row gap-4">
+                  <div class="form-control flex-1">
+                    <label class="input-group input-group-sm">
+                      <input type="color" name="bgColor" x-model="bg"
+                        class="input input-bordered input-sm max-w-[50%]" />
+                      <span class="label-text">Background color</span>
+                    </label>
+                  </div>
+                  <div class="form-control flex-1">
+                    <label class="input-group input-group-sm">
+                      <input type="color" name="fgColor" x-model="fg"
+                        class="input input-bordered input-sm max-w-[50%]" />
+                      <span class="label-text">Foreground color</span>
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div class="flex flex-col lg:flex-row gap-4">
+                  <div class="form-control flex-1">
+                    <label class="label cursor-pointer">
+                      <span class="label-text">Add animations</span>
+                      <input type="checkbox" class="toggle" x-model="hasAnimation" />
+                    </label>
+                  </div>
+                  <div class="form-control flex-1">
+                    <label class="label cursor-pointer">
+                      <span class="label-text">Display grid</span>
+                      <input type="checkbox" class="toggle" x-model="gridDisplay" />
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </template>
+        </div>
+      </div>
+      <div class="divider lg:divider-horizontal" x-ignore>
+        <svg class="w-10 h-10 lg:-rotate-90 stroke-primary" fill="none" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-8l-7 7-7-7">
+          </path>
+        </svg>
+      </div>
+      <div class="card flex-1">
+        <div class="rounded-2xl bg-base-300 p-4 h-full">
+          <div class="flex flex-col">
+            <div class="tooltip tooltip-bottom tooltip-primary" data-tip="Preview of the generated skeleton">
+              <div class="max-h-80 overflow-auto mb-4">
+                <div class="skeleton-loader cursor-progress relative mx-auto"
+                  :style="'height:'+height+'px;width:'+width+'px;background-color:'+bg"
+                  :class="hasAnimation || 'animate-none'"></div>
+              </div>
+            </div>
+            <div class="tabs -mb-px">
+              <a href="#css-tab" class="tab tab-lifted" @click="tab='CSS'" :class="tab==='CSS' && 'tab-active'">CSS</a>
+              <a href="#html-tab" class="tab tab-lifted" @click="tab='HTML'"
+                :class="tab==='HTML' && 'tab-active'">HTML</a>
+              <div class="tab tab-lifted mr-6 flex-1 cursor-default [--tab-border-color:transparent]"></div>
+            </div>
+            <div class="grid">
+              <div class="code-wrapper col-start-1 row-start-1 overflow-hidden">
+                <pre id="css-tab" x-show="tab==='CSS'"
+                  class="max-h-48 flex-1 overflow-auto rounded-b-lg"><code class="language-css" x-text="generatedCSS"></code></pre>
+                <div x-show="tab==='HTML'" id="html-tab">
+                  <pre
+                    class="max-h-48 flex-1 overflow-auto mb-4 rounded-b-lg"><code class="language-html" x-text="exampleCode"></code></pre>
+                  <small>To make it accessible we better announce the parent of
+                    the skeleton loader as busy area using attr
+                    <span class="badge badge-sm badge-primary">aria-busy="true"</span>
+                    then announce it not busy after hiding the skeleton and
+                    showing the real content, and we hide the skeleton loader
+                    for screen reader using
+                    <span class="badge badge-sm badge-primary">aria-hidden="true"</span></small>
+                </div>
+              </div>
+              <div class="col-start-1 row-start-1 flex items-start justify-end p-2">
+                <div x-bind:data-tip="tab==='CSS' ? 'Copy CSS' : 'Copy HTML'"
+                  class="tooltip tooltip-left tooltip-accent">
+                  <button class="btn btn-square btn-sm" x-clipboard="tab==='CSS' ? generatedCSS : exampleCode"
+                    aria-label="Copy Code">
+                    <svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                      <path
+                        d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z">
+                      </path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
