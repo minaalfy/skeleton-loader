@@ -1,6 +1,7 @@
 # skeleton-loader
-> Easily generate animated skeleton loaders for your content
-> Easily use it in any web app as it's just a single div element to add
+    - Easily generate animated skeleton loaders for your content.
+    - Easily use it with any web app as it's just a single div element to add.
+
 # Demo
 **[Online app](https://skeleton-loader.web.app)**
 
