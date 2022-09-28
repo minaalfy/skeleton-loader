@@ -81,7 +81,7 @@
                 @click="tool === 'select' && select($el, index+1)" :class="shape.circle && 'rounded-full'"
                 :style="{height: shape.height+'px', width: shape.width+'px',background: fg, top: shape.top+'px', left: shape.left+'px'}">
                 <button x-show="selected === index+1" class="btn-delete" type="button"
-                  @click="deleteShape(index)"></button>
+                  @click.stop="deleteShape(index)"></button>
               </div>
             </template>
           </div>

@@ -108,6 +108,7 @@ Alpine.data("generator", () => ({
     return `.skeleton-loader {
     position: relative;
     height: ${this.height}px;
+    width: ${this.width}px;
   }
   .skeleton-loader:after {
     content: '';
@@ -188,16 +189,16 @@ Alpine.data("generator", () => ({
   },
 
   deleteShape: async function (index: number) {
-    this.shapes.splice(index, 1);
-    await this.$nextTick();
     this.unSelect();
+    await this.$nextTick();
+    this.shapes.splice(index, 1);
   },
 
   toolSelect: function () {
     this.tool = "select";
   },
 
-  toolCircle: function () {
+  toolCircle: async function () {
     this.tool = "circle";
     this.unSelect();
     this.shapes.push({
@@ -207,14 +208,13 @@ Alpine.data("generator", () => ({
       top: this.height / 2 - 32,
       left: this.width / 2 - 32,
     });
-    setTimeout(() => {
-      const index = this.shapes.length - 1;
-      this.select(document.getElementById("shape-" + index), index + 1);
-      this.toolSelect();
-    });
+    await this.$nextTick();
+    const index = this.shapes.length - 1;
+    this.select(document.getElementById("shape-" + index), index + 1);
+    this.toolSelect();
   },
 
-  toolSquare: function () {
+  toolSquare: async function () {
     this.tool = "square";
     this.unSelect();
     this.shapes.push({
@@ -223,11 +223,10 @@ Alpine.data("generator", () => ({
       top: this.height / 2 - 16,
       left: this.width / 2 - 64,
     });
-    setTimeout(() => {
-      const index = this.shapes.length - 1;
-      this.select(document.getElementById("shape-" + index), index + 1);
-      this.toolSelect();
-    });
+    await this.$nextTick();
+    const index = this.shapes.length - 1;
+    this.select(document.getElementById("shape-" + index), index + 1);
+    this.toolSelect();
   },
 
   updateShape: function ({ detail }: any) {
