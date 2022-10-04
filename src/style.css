@@ -22,6 +22,7 @@ header:after {
   --skeleton-background-size: 100% 100%;
   --skeleton-background-position: -150% 0;
   --skeleton-animation-background-position: 350% 0;
+  --skeleton-animation-duration: 2000ms;
 }
 .skeleton-loader:after {
   content: '';
@@ -35,7 +36,7 @@ header:after {
   background-image: var(--skeleton-background-image);
   background-size: var(--skeleton-background-size);
   background-position: var(--skeleton-background-position);
-  animation: skeleton-animation 2s infinite;
+  animation: skeleton-animation var(--skeleton-animation-duration) infinite;
 }
 .animate-none:after {animation: none;}
 @keyframes skeleton-animation {
@@ -46,6 +47,7 @@ header:after {
 .tab-active {
   --tab-bg: hsl(0 0% 8%);
   --tab-border-color: hsl(0 0% 8%);
+  color: hsl(var(--pc) / var(--tw-text-opacity));
 }
 .btn-delete {
   position: absolute;

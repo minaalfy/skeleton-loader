@@ -14,17 +14,17 @@ export function getBGs(shapes: any[], fg: string, [r, g, b]: string[]) {
       bgs += `, 
         radial-gradient( circle ${shape.width / 2}px at ${shape.width / 2}px ${
         shape.height / 2
-      }px, ${fg} 99%, transparent 0 )`;
+      }px, ${shape.color || fg} 100%, transparent 0 )`;
     } else {
       bgs += `, 
-        linear-gradient(${fg} ${shape.height}px, transparent 0)`;
+        linear-gradient(${shape.color || fg} ${shape.height}px, transparent 0)`;
     }
   }
   return bgs;
 }
 
-export function getSizes(shapes: any[]) {
-  let sizes = `200px 100%`;
+export function getSizes(shapes: any[], width: number) {
+  let sizes = `${width / 2}px 100%`;
   for (let shape of shapes) {
     sizes += `, ${shape.width}px ${shape.height}px`;
   }

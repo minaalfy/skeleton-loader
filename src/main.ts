@@ -62,6 +62,7 @@ Alpine.data("generator", () => ({
   hasAnimation: true,
   width: undefined,
   height: undefined,
+  duration: 2000,
   bg: "#ffffff",
   fg: "#aaaaaa",
   selected: undefined,
@@ -69,11 +70,11 @@ Alpine.data("generator", () => ({
     { circle: true, height: 96, width: 96, top: 16, left: 16 },
     { height: 16, width: 128, top: 40, left: 128 },
     { height: 16, width: 256, top: 72, left: 128 },
-    { height: 16, width: 472, top: 128, left: 16 },
-    { height: 16, width: 472, top: 160, left: 16 },
-    { height: 16, width: 472, top: 192, left: 16 },
-    { height: 16, width: 472, top: 224, left: 16 },
-    { height: 16, width: 472, top: 256, left: 16 },
+    { height: 16, width: 496, top: 128, left: 16 },
+    { height: 16, width: 496, top: 160, left: 16 },
+    { height: 16, width: 496, top: 192, left: 16 },
+    { height: 16, width: 496, top: 224, left: 16 },
+    { height: 16, width: 496, top: 256, left: 16 },
   ],
   exampleCode: `<div class="skeleton-loader"></div>`,
   tab: "CSS",
@@ -94,7 +95,7 @@ Alpine.data("generator", () => ({
       );
       demo.style.setProperty(
         "--skeleton-background-size",
-        `${getSizes(this.shapes)}, 100% 100%`
+        `${getSizes(this.shapes, this.width)}, 100% 100%`
       );
       demo.style.setProperty(
         "--skeleton-background-position",
@@ -104,11 +105,14 @@ Alpine.data("generator", () => ({
         "--skeleton-animation-background-position",
         `350% 0${getPositions(this.shapes)}, 0 0`
       );
+      demo.style.setProperty(
+        "--skeleton-animation-duration",
+        this.duration + "ms"
+      );
     });
     return `.skeleton-loader {
     position: relative;
     height: ${this.height}px;
-    width: ${this.width}px;
   }
   .skeleton-loader:after {
     content: '';
@@ -125,13 +129,17 @@ Alpine.data("generator", () => ({
       linear-gradient(${this.bg} 100%, transparent 0)`
         : ""
     };
-    background-size: ${getSizes(this.shapes)}${
+    background-size: ${getSizes(this.shapes, this.width)}${
       this.hasAnimation ? ", 100% 100%" : ""
     };
     background-position: 0 0 ${getPositions(this.shapes)}${
       this.hasAnimation ? ", 0 0" : ""
     };
-    ${this.hasAnimation ? "animation: skeleton-animation 2s infinite;" : ""}
+    ${
+      this.hasAnimation
+        ? `animation: skeleton-animation ${this.duration}ms infinite;`
+        : ""
+    }
   }
   ${
     this.hasAnimation

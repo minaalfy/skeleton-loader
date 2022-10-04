@@ -20,9 +20,11 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S52CYEKMNJ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-S52CYEKMNJ');
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-S52CYEKMNJ");
   </script>
 </head>
 
@@ -71,7 +73,7 @@
   </header>
   <main class="container px-4 max-w-6xl mx-auto">
     <div class="flex flex-col w-full lg:flex-row mb-8">
-      <div class="card p-4 bg-base-300 flex-1">
+      <div class="card p-4 bg-base-300 min-w-[50%]">
         <div class="h-80 overflow-auto">
           <div :class="gridDisplay && 'grid-display'" id="canvas" x-ref="canvas" x-on:shape-update.window="updateShape"
             @click.self="unSelect" class="relative bg-base-100 mx-auto h-full"
@@ -79,7 +81,7 @@
             <template x-for="(shape, index) in shapes">
               <div class="absolute skeleton-shape" :id="'shape-'+index"
                 @click="tool === 'select' && select($el, index+1)" :class="shape.circle && 'rounded-full'"
-                :style="{height: shape.height+'px', width: shape.width+'px',background: fg, top: shape.top+'px', left: shape.left+'px'}">
+                :style="{height: shape.height+'px', width: shape.width+'px',background: shape.color || fg, top: shape.top+'px', left: shape.left+'px'}">
                 <button x-show="selected === index+1" class="btn-delete" type="button"
                   @click.stop="deleteShape(index)"></button>
               </div>
@@ -179,6 +181,19 @@
                   </div>
                 </div>
               </fieldset>
+              <fieldset class="mb-4">
+                <legend class="label-text">Colors</legend>
+                <div class="flex flex-col lg:flex-row gap-4">
+                  <div class="form-control flex-1">
+                    <label class="input-group input-group-sm">
+                      <input type="color" name="shapeColor" x-model="shapes[selected - 1].color"
+                        class="input input-bordered input-sm max-w-[50%]" />
+                      <span class="label-text">Shape color</span>
+                    </label>
+                  </div>
+                  <div class="flex-1"></div>
+                </div>
+              </fieldset>
             </form>
           </template>
           <template x-if="!selected">
@@ -237,6 +252,20 @@
                   </div>
                 </div>
               </fieldset>
+              <template x-if="hasAnimation">
+                <fieldset>
+                  <div class="form-control flex-1">
+                    <label class="label-text my-2 cursor-pointer" for="duration">Animation duration (<span
+                        x-text="duration"></span>
+                      ms)</label>
+                    <div>
+                      <input id="duration" type="range" min="100" max="6000" class="range range-xs" step="100"
+                        x-model="duration" />
+                      <div class="w-full flex justify-between text-xs px-2"></div>
+                    </div>
+                  </div>
+                </fieldset>
+              </template>
             </form>
           </template>
         </div>
@@ -248,7 +277,7 @@
           </path>
         </svg>
       </div>
-      <div class="card flex-1">
+      <div class="card min-w-[50%]">
         <div class="rounded-2xl bg-base-300 p-4 h-full">
           <div class="flex flex-col">
             <div class="tooltip tooltip-bottom tooltip-primary" data-tip="Preview of the generated skeleton">
@@ -267,11 +296,11 @@
             <div class="grid">
               <div class="code-wrapper col-start-1 row-start-1 overflow-hidden relative">
                 <pre id="css-tab" x-show="tab==='CSS'"
-                  class="max-h-48 flex-1 overflow-auto rounded-b-lg"><code class="language-css" x-text="generatedCSS"></code></pre>
+                  class="max-h-[15rem] flex-1 overflow-auto rounded-b-lg"><code class="language-css" x-text="generatedCSS"></code></pre>
                 <div x-show="tab==='HTML'" id="html-tab">
                   <pre
-                    class="max-h-48 flex-1 overflow-auto mb-4 rounded-b-lg"><code class="language-html" x-text="exampleCode"></code></pre>
-                  <small>To make it accessible we better announce the parent of
+                    class="max-h-[15rem] flex-1 overflow-auto mb-4 rounded-b-lg"><code class="language-html" x-text="exampleCode"></code></pre>
+                  <small class="text-base-content">To make it accessible we better announce the parent of
                     the skeleton loader as busy area using attr
                     <span class="badge badge-sm badge-primary">aria-busy="true"</span>
                     then announce it not busy after hiding the skeleton and
